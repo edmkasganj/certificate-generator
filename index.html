@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Farm Certificate Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background: #f6f7fb; margin: 0; padding: 20px; }
+    .certificate { max-width: 800px; margin: auto; background: #fff; padding: 40px; border: 8px solid #2c6f4a; border-radius: 12px; text-align: center; }
+    h1 { font-family: 'Merriweather', serif; color: #2c6f4a; }
+    .field { margin-bottom: 12px; text-align: left; }
+    label { display:block; font-size:14px; margin-bottom:4px; }
+    input, textarea { width:100%; padding:8px; border:1px solid #ddd; border-radius:6px; }
+    button { margin:10px 5px; padding:10px 14px; border:none; border-radius:6px; background:#2c6f4a; color:#fff; cursor:pointer; }
+    #preview { margin-top:30px; }
+  </style>
+</head>
+<body>
+  <div style="max-width:600px;margin:auto;">
+    <h2>Certificate Generator</h2>
+    <div class="field">
+      <label for="name">Recipient Name</label>
+      <input id="name" type="text" placeholder="Enter full name">
+    </div>
+    <div class="field">
+      <label for="address">Farm Address</label>
+      <textarea id="address" placeholder="Enter farm address"></textarea>
+    </div>
+    <button onclick="generateCertificate()">Generate</button>
+    <button onclick="window.print()">Print</button>
+  </div>
+
+  <div id="preview"></div>
+
+  <script>
+    function generateCertificate() {
+      const name = document.getElementById('name').value || '[Name]';
+      const address = document.getElementById('address').value || '[Address]';
+      document.getElementById('preview').innerHTML = `
+        <div class="certificate">
+          <h1>Certificate of Registration</h1>
+          <p>This is to certify that</p>
+          <h2>${name}</h2>
+          <p>of</p>
+          <p><strong>${address}</strong></p>
+          <p>has been recognized and registered officially.</p>
+          <div style="margin-top:40px;text-align:right;">Authorized Signatory</div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
